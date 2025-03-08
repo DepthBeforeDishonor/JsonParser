@@ -19,7 +19,7 @@ def reason_code_decoder(code):
     #reason_as_string="default"
     match code:
         case 1:
-            reasn_as_string="Band Bonds"
+            reason_as_string="Band Bonds"
 
         case 2:
             reason_as_string="Changing Tips"
@@ -31,50 +31,49 @@ def reason_code_decoder(code):
             reason_as_string="Changing Crystals"
 
         case 5:
-            reason_as_string=""
+            reason_as_string="Missing Material"
 
         case 6:
-            reason_as_string=''
+            reason_as_string='Punch Problem'
 
         case 7:
-            reason_as_string=''
+            reason_as_string='Tray Problem'
 
         case 8:
-            reason_as_string=''
-
+            reason_as_string='Software Bug'
 
         case 9:
-            reasn_as_string=''
+            reason_as_string='WIre Break'
 
         case 10:
-            reason_as_string=''
+            reason_as_string='Engineering'
 
         case 11:
-            reason_as_string=''
+            reason_as_string='Operator Break'
 
         case 12:
-            reason_as_string=''
+            reason_as_string='Double Modules'
 
         case 13:
-            reasn_as_string=''
+            reason_as_string="Gantry Problem"
 
         case 14:
-            reason_as_string=''
+            reason_as_string='Welding Problem'
 
         case 15:
-            reason_as_string=''
+            reason_as_string='Picking Problem'
 
         case 16:
-            reason_as_string=''
+            reason_as_string='Microstop'
 
         case 17:
-            reason_as_string=''
+            reason_as_string='Operator Meeting'
 
         case 18:
-            reason_as_string=''
+            reason_as_string='Machine Start'
 
         case 21:
-            reason_as_string="Time Spent in Manual Mode"
+            reason_as_string="Manual Mode"
 
     return reason_as_string
 
@@ -85,18 +84,7 @@ def reason_code_decoder(code):
 
 def timeDecoder(string):
     
-
-    #string=string[11:]
-    #hour=string[0:2]
-    #hour=int(hour)
-    #minute=string[3:5]
-    #minute=int(minute)
-    #second=string[-2:]
-    #second=int(second)
-    #time=dt.time(hour,minute,second)
     time=dt.datetime.fromisoformat(string)
-    #time=tt.strptime(string,"%H:%M:%S")
-    #time=dt.strptime(string,"%H:%M:%S")
     return time
 
 def main():
@@ -106,12 +94,8 @@ def main():
     file_path = tk.filedialog.askopenfilename()
     #file_path="data.txt"
 
-
     #with open(file_path, 'w', newline='') as csvfile:
         #csvwriter = csv.writer(csvfile)
-        
-
-
 
     with open (file_path, 'r') as file:
         lines=file.readlines();
@@ -124,6 +108,7 @@ def main():
         un_proc_event=json.loads(obj_string)
         json_obj_array.append(un_proc_event)
     csv_list=[]
+    totalized_list=[]
     #with open(file_path, 'w', newline='') as csvfile:
         #csvwriter = csv.writer(csvfile)
     for event in json_obj_array:
@@ -134,14 +119,14 @@ def main():
         reason=reason_code_decoder(event["Event Type"])
         csvEvent=(reason,duration)
         csv_list.append(csvEvent)
+        #i want to totalize the amount of time spent in each event type
+        #what if we had a totalzied list that we searched for by reason, then +=duration to.
         
-    file_path_csv=file_path.replace(".txt", ".csv",1)
 
+    file_path_csv=file_path.replace(".txt", ".csv",1)
 
     with open(file_path_csv, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerows(csv_list)
-
-    
 
 main()
