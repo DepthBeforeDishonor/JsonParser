@@ -8,16 +8,80 @@ import time as tt
 import csv
 
 
+
+
+
+
 def reason_code_decoder(code):
     #just need a list of reason codes and I can finish this, get from repository tomorrow
-    #print(code)
+    reason_as_string=code
     code=int(code)
-    reason_as_string="default"
+    #reason_as_string="default"
     match code:
+        case 1:
+            reasn_as_string="Band Bonds"
+
+        case 2:
+            reason_as_string="Changing Tips"
+
+        case 3:
+            reason_as_string="Chanigng Reel"
+
+        case 4:
+            reason_as_string="Changing Crystals"
+
+        case 5:
+            reason_as_string=""
+
         case 6:
-            reason_as_string="Punch Problem"
-    #print(reason_as_string)
+            reason_as_string=''
+
+        case 7:
+            reason_as_string=''
+
+        case 8:
+            reason_as_string=''
+
+
+        case 9:
+            reasn_as_string=''
+
+        case 10:
+            reason_as_string=''
+
+        case 11:
+            reason_as_string=''
+
+        case 12:
+            reason_as_string=''
+
+        case 13:
+            reasn_as_string=''
+
+        case 14:
+            reason_as_string=''
+
+        case 15:
+            reason_as_string=''
+
+        case 16:
+            reason_as_string=''
+
+        case 17:
+            reason_as_string=''
+
+        case 18:
+            reason_as_string=''
+
+        case 21:
+            reason_as_string="Time Spent in Manual Mode"
+
     return reason_as_string
+
+
+
+
+
 
 def timeDecoder(string):
     
